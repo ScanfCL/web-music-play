@@ -93,32 +93,26 @@ const musics: Prisma.MusicCreateInput[] = [
   },
 ];
 
-async function main() {
+export async function main() {
   // create two dummy articles
-  const musicsResponse = await Promise.all(
-    musics.map((data, index) =>
-      prisma.music.upsert({
-        where: {
-          id: index + 1,
-        },
-        update: {},
-        create: {
-          ...data,
-        },
-      }),
-    ),
-  );
+  const count = await prisma.music.count();
+
+  if (count) return;
+
+  const musicsResponse = await prisma.music.createMany({
+    data: musics,
+  });
 
   console.log({ music: musicsResponse });
 }
 
 // execute the main function
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    // close Prisma Client at the end
-    await prisma.$disconnect();
-  });
+// main()
+//   .catch((e) => {
+//     console.error(e);
+//     process.exit(1);
+//   })
+//   .finally(async () => {
+//     // close Prisma Client at the end
+//     await prisma.$disconnect();
+//   });

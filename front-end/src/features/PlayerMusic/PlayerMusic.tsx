@@ -12,7 +12,6 @@ export const PlayerMusic = () => {
     url,
     pip,
     playing,
-    controls,
     light,
     loop,
     playbackRate,
@@ -80,7 +79,6 @@ export const PlayerMusic = () => {
         url={url || ''}
         pip={pip}
         playing={playing}
-        controls={controls}
         light={light}
         loop={loop}
         playbackRate={playbackRate}

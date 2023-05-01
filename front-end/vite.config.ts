@@ -7,4 +7,8 @@ export default defineConfig({
   define: {
     'process.env': {},
   },
+  server: {
+    host: true,
+    port: 5173, // This is the port which we will use in docker
+  },
 });

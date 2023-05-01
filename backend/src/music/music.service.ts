@@ -28,9 +28,18 @@ export class MusicService {
       take: perPage,
       ...(search && {
         where: {
-          title: {
-            contains: search,
-          },
+          OR: [
+            {
+              title: {
+                contains: search,
+              },
+            },
+            {
+              artist: {
+                contains: search,
+              },
+            },
+          ],
         },
       }),
     });

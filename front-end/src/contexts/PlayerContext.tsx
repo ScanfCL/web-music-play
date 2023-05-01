@@ -6,7 +6,6 @@ export type IPlayerContext = {
   url: string | null;
   pip: boolean;
   playing: boolean;
-  controls: boolean;
   light: boolean;
   volume: number;
   muted: boolean;
@@ -20,7 +19,6 @@ export type IPlayerContext = {
   load: (url: string) => void;
   handlePlayPause: () => void;
   handleStop: () => void;
-  handleToggleControls: () => void;
   handleToggleLight: () => void;
   handleToggleLoop: () => void;
   handleVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -52,7 +50,6 @@ export const PlayerProvider = ({ children }: React.PropsWithChildren) => {
   const [url, setUrl] = useState<string | null>(null);
   const [pip, setPip] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [controls, setControls] = useState(false);
   const [light, setLight] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [muted, setMuted] = useState(false);
@@ -78,21 +75,6 @@ export const PlayerProvider = ({ children }: React.PropsWithChildren) => {
   const handleStop = () => {
     setUrl(null);
     setPlaying(false);
-  };
-
-  const handleToggleControls = () => {
-    // set(
-    //   {
-    //     controls: !this.state.controls,
-    //     url: null,
-    //   },
-    //   () => this.load(url),
-    // );
-    // setControls((prev) => !prev);
-    // setUrl((prev) => {
-    //   load(prev);
-    //   return null;
-    // });
   };
 
   const handleToggleLight = () => {
@@ -203,7 +185,7 @@ export const PlayerProvider = ({ children }: React.PropsWithChildren) => {
         url,
         pip,
         playing,
-        controls,
+        // controls,
         light,
         volume,
         muted,
@@ -217,7 +199,6 @@ export const PlayerProvider = ({ children }: React.PropsWithChildren) => {
         load,
         handlePlayPause,
         handleStop,
-        handleToggleControls,
         handleToggleLight,
         handleToggleLoop,
         handleVolumeChange,
